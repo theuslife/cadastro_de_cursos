@@ -19,7 +19,12 @@ class CursoController extends Controller
 
     public function criar()
     {
-        return view('admin.criar');
+        return view('admin.criar', compact('random'));
+    }
+
+    public function editImg()
+    {
+
     }
 
     public function salvar(Request $post)
@@ -36,29 +41,43 @@ class CursoController extends Controller
             $dados['publicado'] = 'nao';
         }
 
+        //Create para processar um ID no banco e validar imagem em seguida
+        Curso::create($dados);
+
         //Validação da imagem
         if($post->hasFile('imagem'))
         {
+            //Recebendo o file
             $imagem = $post->file('imagem');
 
-            $diretorio = 'img/cursos/';
-
+            //Pegando extensão do file
             $extensao = $imagem->guessClientExtension();
+            
+            //Pegando toda a listagem de cursos
+            $cursos = Curso::all();
 
-            $numeroRan = rand(1, 9999);
+            //Foreach para não repetir um mesmo nome em uma imagem
+            foreach ($cursos as $curso) 
+            {
+                //Caso o título do curso seja o mesmo
+                if($dados['titulo'] == $curso->titulo){
+                    
+                    //Colocaremos o nome da imagem junto com o ID deste curso achado pelo título
+                    $diretorio = 'img/cursos/';
+                    $id = $curso->id;
+                    $nomeImagem = 'img_' . $id . '.' . $extensao;
+                    $imagem->move($diretorio, $nomeImagem);
 
-            $nomeImagem = 'img_' . $numeroRan . '.' . $extensao; 
-
-            $imagem->move($diretorio, $nomeImagem);
-
-            $dados['imagem'] = $diretorio . $nomeImagem; 
-
+                    //Dados que serão salvos no banco
+                    $dados['imagem'] = $diretorio . $nomeImagem; 
+                    
+                    //Logo fazemos um update com estes dados da imagem validada.
+                    Curso::find($id)->update($dados);
+                    return redirect()->route('admin.cursos');
+                }
+            }
         }
-
-        Curso::create($dados);
-
-        return redirect()->route('admin.cursos');
-
+        
     }
 
     public function editar($id)
@@ -85,19 +104,11 @@ class CursoController extends Controller
         if($put->hasFile('imagem'))
         {
             $imagem = $put->file('imagem');
-
-            $diretorio = 'img/cursos/';
-
             $extensao = $imagem->guessClientExtension();
-
-            $numeroRan = rand(1, 9999);
-
-            $nomeImagem = 'img_' . $numeroRan . '.' . $extensao; 
-
+            $diretorio = 'img/cursos/';
+            $nomeImagem = 'img_' . $id . '.' . $extensao;
             $imagem->move($diretorio, $nomeImagem);
-
             $dados['imagem'] = $diretorio . $nomeImagem; 
-
         }
 
         Curso::find($id)->update($dados);

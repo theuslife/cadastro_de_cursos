@@ -8,7 +8,7 @@ Route::get('/admin/cursos', ['as'=>'admin.cursos', 'uses'=>'Admin\CursoControlle
 
 //Create
 Route::get('/admin/cursos/criar', ['as'=>'admin.cursos.criar', 'uses'=>'Admin\CursoController@criar']);
-Route::post('/admin/cursos/salvar', ['as'=>'admin.cursos.salvar', 'uses'=>'Admin\CursoController@salvar']);
+Route::post('/admin/cursos/salvar/', ['as'=>'admin.cursos.salvar', 'uses'=>'Admin\CursoController@salvar']);
 
 //Update
 Route::get('/admin/cursos/editar/{id}', ['as'=>'admin.cursos.editar', 'uses'=>'Admin\CursoController@editar']);
