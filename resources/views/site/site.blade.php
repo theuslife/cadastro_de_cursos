@@ -1,6 +1,9 @@
 @extends('layout.layout')
 
 @section('titulo', 'Tela inicial do Crud')
+@section('inicio', 'active')
+@section('cursos', '')
+
 
 @section('conteudo')
 <div class="container">

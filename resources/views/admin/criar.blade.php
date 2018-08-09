@@ -1,5 +1,10 @@
 @extends('layout.layout')
 
+@section('titulo', 'Criar novo Curso')
+@section('inicio', '')
+@section('cursos', 'active')
+
+
 @section('conteudo')
 <div class="container text-white">
     <form action="{{ route('admin.cursos.salvar') }}" method="POST" enctype="multipart/form-data">

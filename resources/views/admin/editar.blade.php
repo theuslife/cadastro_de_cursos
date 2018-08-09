@@ -1,4 +1,7 @@
 @extends('layout.layout')
+@section('titulo', 'Editar Curso');
+@section('inicio', '')
+@section('cursos', 'active')
 
 @section('conteudo')
 

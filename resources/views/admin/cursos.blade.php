@@ -1,6 +1,8 @@
 @extends('layout.layout')
 
-@section('titulo', 'Tela inicial do Crud')
+@section('titulo', 'Listagem de Cursos')
+@section('inicio', '')
+@section('cursos', 'active')
 
 @section('conteudo')
 

@@ -21,8 +21,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-item nav-link active" href="{{ route('site') }}">Inicio <span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="{{ route('admin.cursos') }}">Cursos</a>
+              <a class="nav-item nav-link @yield('inicio')" href="{{ route('site') }}">Inicio <span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link @yield('cursos')" href="{{ route('admin.cursos') }}">Cursos</a>
             </div>
             <span class="navbar-text ml-auto">
                 Feito por: <a target="_blank" href="https://github.com/theuslife">Matheus Rodrigues</a> 
