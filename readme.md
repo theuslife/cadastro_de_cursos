@@ -12,7 +12,7 @@ Utilizei Bootstrap 4 como design responsivo para o layout das páginas.
 ![](img_readme/3.png)
 
 ## Formulário de edição
-![](img_readme/4.png)
+![](img_readme/6.png)
 
 ## Laravel
 Documentação do Laravel pode ser acha em: [Laravel website](http://laravel.com/docs).
